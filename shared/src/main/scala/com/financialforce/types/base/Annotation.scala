@@ -6,8 +6,20 @@ package com.financialforce.types.base
 
 import com.financialforce.types.ArrayInternCache
 
+import scala.util.hashing.MurmurHash3
+
 /** Annotation element, name is case-insensitive, parameters are unparsed. */
 case class Annotation(name: String, parameters: Option[String]) {
+  override def equals(obj: Any): Boolean = {
+    val other = obj.asInstanceOf[Annotation]
+    name.equalsIgnoreCase(other.name) &&
+    parameters.getOrElse("").equalsIgnoreCase(other.parameters.getOrElse(""))
+  }
+
+  override def hashCode(): Int = {
+    MurmurHash3.orderedHash(Seq(name.toLowerCase(), parameters.getOrElse("")))
+  }
+
   override def toString: String = {
     if (parameters.isDefined) s"@$name(${parameters.get})" else s"@$name"
   }

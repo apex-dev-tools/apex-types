@@ -12,6 +12,10 @@ case class Modifier(text: String) {
     text.equalsIgnoreCase(other.text)
   }
 
+  override def hashCode(): Int = {
+    text.toLowerCase.hashCode
+  }
+
   override def toString: String = text
 }
 
