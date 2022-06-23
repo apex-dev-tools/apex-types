@@ -62,6 +62,6 @@ For sbt use,
 
 ```
 libraryDependencies += Seq(
-      "io.github.apex-dev-tols" %%% "apex-types" % "X.Y.Z"
+      "io.github.apex-dev-tools" %%% "apex-types" % "X.Y.Z"
     )
 ```
