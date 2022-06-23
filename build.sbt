@@ -10,7 +10,7 @@ lazy val root = project.in(file(".")).aggregate(types.js, types.jvm)
 lazy val types = crossProject(JVMPlatform, JSPlatform)
   .in(file("."))
   .settings(
-    name := "ff-apex-outline-parser",
+    name := "apex-types",
     scalacOptions += "-deprecation",
   )
   .jvmSettings(
