@@ -16,6 +16,7 @@ inThisBuild(List(
       url("https://github.com/apex-dev-tools")
     )
   ),
+  versionScheme := Some("strict"),
   isSnapshot := false,
   scalaVersion := "2.13.3",
   sonatypeCredentialHost := "s01.oss.sonatype.org",
