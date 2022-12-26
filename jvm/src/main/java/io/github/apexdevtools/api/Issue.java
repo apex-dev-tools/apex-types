@@ -36,8 +36,8 @@ public abstract class Issue {
     /* The location within the file */
     public abstract IssueLocation fileLocation();
 
-    /* The category of the issue, one of "Syntax", "Error", "Missing", "Warning" or "Unused" */
-    public abstract String category();
+    /* The rule violated, sets the issue priority */
+    public abstract Rule rule();
 
     /* Is this considered an error issue, rather than a warning */
     public abstract Boolean isError();
@@ -47,7 +47,7 @@ public abstract class Issue {
 
     /* Format as String, filePath is omitted to avoid duplicating over multiple Issues */
     public String asString() {
-        return category() + ": " + fileLocation().displayPosition() + ": " + message();
+        return rule().name() + ": " + fileLocation().displayPosition() + ": " + message();
     }
 
     @Override

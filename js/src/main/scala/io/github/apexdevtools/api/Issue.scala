@@ -26,8 +26,8 @@ trait Issue {
   /* The location within the file */
   def fileLocation(): IssueLocation
 
-  /* The category of the issue, one of "Syntax", "Error", "Missing", "Warning" or "Unused" */
-  def category(): String
+  /* The rule violated, sets the issue priority */
+  def rule(): Rule
 
   /* The issue message */
   def message(): String
@@ -36,7 +36,7 @@ trait Issue {
   def isError: java.lang.Boolean
 
   /* Format as String, filePath is omitted to avoid duplicating over multiple Issues */
-  def asString: String = category() + ": " + fileLocation().displayPosition + ": " + message()
+  def asString: String = rule().name() + ": " + fileLocation().displayPosition + ": " + message()
 
   override def toString: String = filePath() + ": " + asString
 }
@@ -44,11 +44,4 @@ trait Issue {
 object Issue {
   // Default source name for apex-ls generated diagnostics
   final val APEX_LS_PROVIDER = "apex-ls"
-
-  // Category constants, these should become enums after moving to Scala3
-  final val SYNTAX_ISSUE  = "Syntax"
-  final val ERROR_ISSUE   = "Error"
-  final val MISSING_ISSUE = "Missing"
-  final val WARNING_ISSUE = "Warning"
-  final val UNUSED_ISSUE  = "Unused"
 }
