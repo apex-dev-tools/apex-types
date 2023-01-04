@@ -21,8 +21,8 @@ jobs:
         cache: 'sbt'
 
     - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      with:
+        node-version: 16
 
     - name: Build
       run: sbt compile
