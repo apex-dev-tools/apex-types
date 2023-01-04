@@ -25,4 +25,4 @@ jobs:
           node-version: 16
 
     - name: Build
-      run: sbt package
+      run: sbt compile
