@@ -2,66 +2,53 @@
 
 This provides abstractions for describing types defined in Salesforce's Apex language for use by tooling libraries. The type model is exposed in Scala and can be built for JVM or Node use (via scala.js).
 
-Types are described using an ITypeDeclaration which contains fields for individual parts of the type such as constructors and inner types. For simple elements, such as Modifiers, concrete implementations are provided to ease adoption.     
+Types are described using an ITypeDeclaration which contains fields for individual parts of the type such as constructors and inner types. For simple elements, such as Modifiers, concrete implementations are provided to ease adoption.
 
 ## Getting Started
 
-### Prerequisites
+### Installation
 
-For OS X follow below, for other OSs setup should be similar but the details will vary.
+Releases are available from [SonaType](https://s01.oss.sonatype.org). You will need to add the repository to your build tool.
 
-- Java JDK 1.8
+SBT:
 
-  - OpenJDK installed via brew is recommended
-    ```sh
-    brew tap adoptopenjdk/openjdk
-    brew install --cask adoptopenjdk8
-    ```
-  - For the correct java version to be used, JAVA_HOME must be set accordingly:
-    - E.g. To always select JDK 1.8, add the following to your bash/zsh profile
-      ```sh
-      export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-      ```
+  ```scala
+  project.settings(
+    // Replace %% with %%% to use ScalaJS build
+    libraryDependencies += "io.github.apex-dev-tools" %% "apex-types" % "X.X.X"
+  )
+  ```
 
-- [Scala build tool](https://www.scala-sbt.org/)
+Maven:
 
-```sh
-brew install sbt
-```
+  ```xml
+  <dependency>
+      <groupId>io.github.apex-dev-tools</groupId>
+      <artifactId>apex-types</artifactId>
+      <version>X.Y.Z</version>
+  </dependency>
+  ```
 
-## Building
+## Development
 
-```sh
-sbt package
-```
+### Building
 
-This will generate two outputs:
+The build is a cross project for JS and JVM; SBT commands are aggregated, but can also be executed separately with `sbt typesJVM/[cmd]` or `sbt typesJS/[cmd]`.
 
-- jvm/target/scala-2.13/apex-types_2.13-X.Y.Z.jar
-- js/target/scala-2.13/apex-types_sjs2.13-X.Y.Z.jar
+Available build commands:
 
-To make these available in your local ivy and maven repositories you can use a target of 'typesJVM' or 'typesJS' combined with either 'publishLocal' for .ivy2 or 'publishM2' for .mvn as needed, e.g. 
+* `sbt package` - Creates packaged jars for testing. e.g. `jvm/target/scala-2.13/apex-types_2.13-X.Y.Z.jar`
+* `sbt pack` / `sbt "pack [version]"` - Do a local published release of the most recent tag or given value.
+  * **WARNING:** This can override the remote releases, clear your `~/.ivy2/local` directory to revert.
+* `sbt publishLocal` - Same as `pack` except it will generate a snapshot versions.
+* `sbt test` - Execute full test run.
+* `sbt clean` - Removes most build files and artifacts.
 
-```sh
-sbt typesJVM/publishM2
-```
+<!--### Testing-->
+<!--TODO-->
 
-## Downloading
+### Release
 
-For Maven use,
+Releases are automated via workflow on publishing a release. Create a `v` prefixed tag at the same time on the commit to be released (e.g. `v1.0.0`).
 
-```
-<dependency>
-    <groupId>io.github.apex-dev-tools</groupId>
-    <artifactId>apex-types</artifactId>
-    <version>X.Y.Z</version>
-</dependency>
-```
-
-For sbt use, 
-
-```
-libraryDependencies += Seq(
-      "io.github.apex-dev-tools" %%% "apex-types" % "X.Y.Z"
-    )
-```
+Snapshot releases can also be created at any time by executing the `Publish` workflow on a branch. The versioning will be in the format `X.X.X+Y-yyyy-SNAPSHOT`; the latest tag followed by recent commit info.
