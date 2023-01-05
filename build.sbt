@@ -13,7 +13,6 @@ inThisBuild(
       )
     ),
     versionScheme          := Some("strict"),
-    isSnapshot             := false,
     scalaVersion           := "2.13.10",
     sonatypeCredentialHost := "s01.oss.sonatype.org",
     sonatypeRepository     := "https://s01.oss.sonatype.org/service/local"
