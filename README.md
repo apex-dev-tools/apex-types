@@ -40,12 +40,9 @@ Available build commands:
 * `sbt package` - Creates packaged jars for testing. e.g. `jvm/target/scala-2.13/apex-types_2.13-X.Y.Z.jar`
 * `sbt pack` / `sbt "pack [version]"` - Do a local published release of the most recent tag or given value.
   * **WARNING:** This can override the remote releases, clear your `~/.ivy2/local` directory to revert.
-* `sbt publishLocal` - Same as `pack` except it will generate a snapshot versions.
+* `sbt publishLocal` - Same as `pack` except it will generate snapshot versions.
 * `sbt test` - Execute full test run.
 * `sbt clean` - Removes most build files and artifacts.
-
-<!--### Testing-->
-<!--TODO-->
 
 ### Release
 
