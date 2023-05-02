@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2021 FinancialForce.com, inc. All rights reserved.
  */
-
 package com.financialforce.types.base
 
 import com.financialforce.types.ArrayInternCache
