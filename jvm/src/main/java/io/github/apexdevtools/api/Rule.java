@@ -14,19 +14,42 @@
 
 package io.github.apexdevtools.api;
 
-/* WARNING: This must be identical to Scala class of same name */
+/**
+ * Analysis named rule.
+ * Provides basic information about the Rule.
+ * WARNING: This must be identical to Scala class of same name
+ */
 public interface Rule {
-    // Priority constants, these should become enums after moving to Scala3
-    // These are based on SonarQube, PMD uses Integer 1-5
-    Integer BLOCKER_PRIORITY  = 1; // Change absolutely required
-    Integer CRITICAL_PRIORITY = 2; // Change highly recommended
-    Integer MAJOR_PRIORITY    = 3; // Change recommended
-    Integer MINOR_PRIORITY    = 4; // Change optional
-    Integer INFO_PRIORITY     = 5; // Change highly optional
+    // Priority constants, these are based on SonarQube, PMD uses Integer 1-5
 
-    /* The nane of the rule */
+    /**
+     * Change absolutely required
+     */
+    Integer BLOCKER_PRIORITY = 1;
+    /**
+     * Change highly recommended
+     */
+    Integer CRITICAL_PRIORITY = 2;
+    /**
+     * Change recommended
+     */
+    Integer MAJOR_PRIORITY = 3;
+    /**
+     * Change optional
+     */
+    Integer MINOR_PRIORITY = 4;
+    /**
+     * Change highly optional
+     */
+    Integer INFO_PRIORITY = 5;
+
+    /**
+     * The nane of the rule, does need to be unique but recommended it is
+     */
     String name();
 
-    /* Range 1-5, 1 being the highest */
+    /**
+     * Priority Range 1-5, 1 being the highest
+     */
     Integer priority();
 }

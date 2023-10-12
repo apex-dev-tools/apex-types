@@ -14,7 +14,12 @@
 
 package io.github.apexdevtools.api;
 
-/* WARNING: This must be identical to Scala class of same name */
+/**
+ * Location of an Issue in a file.
+ * Line numbers start at 1, character offsets within a line start at 0.
+ * Assumes start position <= end position but does not validate this.
+ * WARNING: This must be identical to Scala class of same name
+ */
 public abstract class IssueLocation {
     public abstract int startLineNumber();
     public abstract int startCharOffset();
